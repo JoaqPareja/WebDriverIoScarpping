@@ -1,6 +1,5 @@
 import { $,expect } from '@wdio/globals'
 import Page from './page.js';
-
 /**
  * sub page containing specific selectors and methods for a specific page
  */
@@ -53,13 +52,6 @@ class Homepage extends Page {
     public async articles():Promise<void>{
         await this.articlesH2()
     }
-    // let iterar = 
-    // let iterationsOfH2 = $$(iterar)
-
-    // iterationsOfH2.forEach(element => {
-    //     h2.push(element.getText())
-    // });
-
 
     /**
      * a method to encapsule automation code to interact with the page
@@ -71,9 +63,6 @@ class Homepage extends Page {
     //     await this.btnSubmit.click();
     // }
 
-    /**
-     * overwrite specific options to adapt it to page object
-     */
     public async open () {
         return await super.open();
     }
