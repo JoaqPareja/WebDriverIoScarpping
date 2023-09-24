@@ -3,7 +3,10 @@ import Page from './page.js';
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class Homepage extends Page {
+export  class Homepage extends Page {
+    static open() {
+        throw new Error('Method not implemented.');
+    }
     /**
      * define selectors using getter methods
      */
@@ -12,10 +15,8 @@ class Homepage extends Page {
         searchInput:()=>$('#cb1-edit'),
         searchButton:()=>$('button[type=submit]'),
         optionsDisplayed:()=>$('#cb1-list'),
-        h2Articles:()=>('.ui-search-item__title.shops__item-title'),
         }
     }
-    public h2Articles:Array<string> = [];   
     protected async typSrch(valueToType:string) {
         return await this.selectors.searchInput().setValue(valueToType);
     }
@@ -40,18 +41,7 @@ class Homepage extends Page {
     public async checkSearchBoxIsOpen(){
         return await this.chckSrchBoxIsOpen();
     }
-    protected async articlesH2(){
-       const iterations =  await $$(this.selectors.h2Articles())
-      return  iterations.forEach(async element => {
-        if(element!= null){
-            this.h2Articles.push(await element.getText())
 
-        }
-      });
-    }
-    public async articles():Promise<void>{
-        await this.articlesH2()
-    }
 
     /**
      * a method to encapsule automation code to interact with the page
@@ -67,6 +57,5 @@ class Homepage extends Page {
         return await super.open();
     }
 }
-
 
 export default new Homepage();
