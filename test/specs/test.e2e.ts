@@ -2,11 +2,11 @@ import { expect } from '@wdio/globals'
 import Homepage from '../pageobjects/homepage.page.js'
 // import SecurePage from '../pageobjects/secure.page.js'
 
-describe('My Login application', () => {
+describe('Get Mercado libre information', () => {
     before(async()=>{
         await Homepage.open()
     })
-    it('should login with valid credentials', async () => {
+    it('Get Camisetas information', async () => {
         await Homepage.typeSearch('Camisetas');
         await Homepage.checkInputValue('Camisetas')
         await Homepage.checkSearchBoxIsOpen();
