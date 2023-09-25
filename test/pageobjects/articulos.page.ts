@@ -4,8 +4,8 @@ export class Articulos{
             h2Articles:()=>('.ui-search-item__title.shops__item-title'),
             priceArticle:()=>('.andes-money-amount__fraction'),
             hrefLink:()=>('.ui-search-item__group__element.shops__items-group-details.ui-search-link'),
-            nextBtn:()=> ('.andes-pagination__arrow'),
-            currentPageNumber:()=>('.andes-pagination__link')
+            nextBtn:()=> ('a[title=Siguiente]'),
+            currentPageNumber:()=>('.andes-pagination__button.andes-pagination__button--current')
         }
         // andes-pagination__link
     }//andes-pagination__button andes-pagination__button--current
@@ -41,11 +41,13 @@ export class Articulos{
     //  public async uniffyArrs(){
     //     return this.uniArrs()
     //  }
-     protected async clickNextBtn(){
+     protected async clickNextBtn():Promise<void>{
         // browser.pause(10000);
-         await $(this.selectors.nextBtn()).waitForDisplayed()
+         await $(this.selectors.nextBtn()).waitForDisplayed(),
          await $(this.selectors.nextBtn()).scrollIntoView()
-         await $(this.selectors.nextBtn()).click()
+        const nextBtn = await $(this.selectors.nextBtn())
+        // await expect(nextBtn).toHaveText('Siguiente'),
+        await $(nextBtn).click()
      }
 
     //  public async clickNextButton(){
@@ -60,21 +62,17 @@ export class Articulos{
      protected async getPageInformation(){
         const pageCurrent:Array<string> =['1','2','3']
         // await this.clickNextBtn()
-        await this.checkCurrentNumber(pageCurrent[0]);
-        await this.clickNextBtn()
-
-        pageCurrent.forEach(async ()=>{
-            // console.log(pageCurrentElement)
-            // await this.getArticlesInformation();
-            // console.log(await $(this.selectors.currentPageNumber()).getText());
-            // await this.checkCurrentNumber(pageCurrentElement);
-            // const links = await $('.andes-pagination__arrow')
-           
-           
-            // await this.uniffyArrs;
-            // await this.clickNextBtn;
-        })
-        
+        for (let index = 0; index < pageCurrent.length; index++) {
+            // while(!pageCurrent.at(-1)){
+                await this.getArticlesInformation();
+                await this.checkCurrentNumber(pageCurrent[index]),
+                await this.clickNextBtn()
+                // break;
+            // }
+            
+            
+        }
+    
      }
      public async getArticlesInformationFromPages(){
         return await this.getPageInformation();
