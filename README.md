@@ -8,7 +8,7 @@ On the project we are using both, protected and public methods.
 
 Public Methods:
 
-    The class defines several public methods that provide higher-level interactions with the web page elements. These methods include:
+ The class defines several public methods that provide higher-level interactions with the web page elements. These methods include:
 
 Protected Methods:
 
