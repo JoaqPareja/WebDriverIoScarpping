@@ -14,10 +14,18 @@ describe('Get Mercado libre information', () => {
         await Homepage.clickSearchBtn();
         await expect(browser).toHaveUrlContaining('camiseta')
         await Articulos.getArticlesInformationFromPages()
+
+        browser.pause(10000);
+       
+        // links.forEach(async (link) => {
+        //     await link.click()
+        // });
+                // await browser.pause(10000);
+
         // await Articulos.getArticlesInformation()
         // await Articulos.clickNextButton();
-        console.log(Articulos.h2Articles)
-        console.log(Articulos.joinArrs)
+        // console.log(Articulos.h2Articles)
+        // console.log(Articulos.joinArrs)
         
     })
     // it('get Information', async()=>{
