@@ -1,5 +1,6 @@
 import { expect } from '@wdio/globals'
 import Homepage from '../pageobjects/homepage.page.js'
+import Articulos from '../pageobjects/articulos.page.js'
 // import SecurePage from '../pageobjects/secure.page.js'
 
 describe('Get Mercado libre information', () => {
@@ -12,8 +13,7 @@ describe('Get Mercado libre information', () => {
         await Homepage.checkSearchBoxIsOpen();
         await Homepage.clickSearchBtn();
         await expect(browser).toHaveUrlContaining('camiseta')
-        await Homepage.articles()
-        console.log(Homepage.h2Articles)
+        await Articulos.articles()
+        console.log(Articulos.h2Articles)
     })
 })
-
