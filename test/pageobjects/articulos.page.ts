@@ -37,7 +37,7 @@ export class Articulos{
          await this.getLink(this.selectors.hrefLink(), this.hrefArticles)
      }
      protected get uniffyArrs():Promise<string>{
-        return this.joinArrs.push({Titles: this.h2Articles, Prices:this.priceArticles, Link: this.hrefArticles})
+        return this.joinArrs.push([{Titles: this.h2Articles, Prices:this.priceArticles, Link: this.hrefArticles}])
      }
     //  public async uniffyArrs(){
     //     return this.uniArrs()

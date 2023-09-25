@@ -20,6 +20,6 @@ describe('Get Mercado libre information', () => {
         browser.pause(10000);
     })
     it('get Information', async()=>{
-        await writeFile('./file.txt', Articulos.joinArrs);
+        await writeFile('./file.txt', JSON.stringify(Articulos.joinArrs));
     })
 })
