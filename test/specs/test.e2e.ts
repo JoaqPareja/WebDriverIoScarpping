@@ -13,7 +13,7 @@ describe('Get Mercado libre information', () => {
         await Homepage.checkSearchBoxIsOpen();
         await Homepage.clickSearchBtn();
         await expect(browser).toHaveUrlContaining('camiseta')
-        await Articulos.articles()
+        await Articulos.getArticlesInformation()
         console.log(Articulos.h2Articles)
     })
 })
