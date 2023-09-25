@@ -1,3 +1,4 @@
+
 export class Articulos{
     protected get selectors(){
         return{
@@ -71,6 +72,13 @@ export class Articulos{
      public async getArticlesInformationFromPages(){
         return await this.getPageInformation();
      }
+    //  protected exprFile(filePath:string,ArrToSend:string){
+    //     fs.writeFileSync(filePath, ArrToSend);
+    //  }
+    //  public exportFile(filePath:string,ArrToSend:string){
+    //     fs.writeFileSync(filePath, '\n'+ArrToSend+'\n');
+    //  }
+   
 }
 
 export default new Articulos();

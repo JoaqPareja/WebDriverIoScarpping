@@ -1,6 +1,8 @@
 import { expect } from '@wdio/globals'
-import Homepage from '../pageobjects/homepage.page.js'
-import Articulos from '../pageobjects/articulos.page.js'
+import Homepage from '../pageobjects/homepage.page.ts'
+import Articulos from '../pageobjects/articulos.page.ts'
+// import exportArrayToFile from '../pageobjects/writefile.ts'
+import { readFile, writeFile } from 'fs/promises';
 // import SecurePage from '../pageobjects/secure.page.js'
 
 describe('Get Mercado libre information', () => {
@@ -16,19 +18,8 @@ describe('Get Mercado libre information', () => {
         await Articulos.getArticlesInformationFromPages()
         console.log(Articulos.joinArrs)
         browser.pause(10000);
-       
-        // links.forEach(async (link) => {
-        //     await link.click()
-        // });
-                // await browser.pause(10000);
-
-        // await Articulos.getArticlesInformation()
-        // await Articulos.clickNextButton();
-        // console.log(Articulos.h2Articles)
-        // console.log(Articulos.joinArrs)
-        
     })
-    // it('get Information', async()=>{
-    
-    // })
+    it('get Information', async()=>{
+        await writeFile('./file.txt', Articulos.joinArrs);
+    })
 })
