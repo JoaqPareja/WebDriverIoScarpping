@@ -14,7 +14,7 @@ describe('Get Mercado libre information', () => {
         await Homepage.clickSearchBtn();
         await expect(browser).toHaveUrlContaining('camiseta')
         await Articulos.getArticlesInformationFromPages()
-
+        console.log(Articulos.joinArrs)
         browser.pause(10000);
        
         // links.forEach(async (link) => {

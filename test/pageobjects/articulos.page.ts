@@ -50,9 +50,6 @@ export class Articulos{
         await $(nextBtn).click()
      }
 
-    //  public async clickNextButton(){
-    //     return await this.clickNextBtn;
-    //  }
      protected async checkCurrentNumber(currentIteraion:string){
         await $(this.selectors.currentPageNumber()).waitForDisplayed()
         await $(this.selectors.currentPageNumber()).scrollIntoView()
@@ -67,10 +64,7 @@ export class Articulos{
                 await this.getArticlesInformation();
                 await this.checkCurrentNumber(pageCurrent[index]),
                 await this.clickNextBtn()
-                // break;
-            // }
-            
-            
+                await this.uniffyArrs;
         }
     
      }
