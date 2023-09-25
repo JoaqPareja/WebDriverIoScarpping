@@ -8,8 +8,7 @@ export class Articulos{
             nextBtn:()=> ('a[title=Siguiente]'),
             currentPageNumber:()=>('.andes-pagination__button.andes-pagination__button--current')
         }
-        // andes-pagination__link
-    }//andes-pagination__button andes-pagination__button--current
+    }
     public h2Articles:Array<string> = [];   
     public priceArticles:Array<string> = [];   
     public hrefArticles:Array<string> = [];
