@@ -55,7 +55,7 @@ export class Articulos{
         await $(this.selectors.currentPageNumber()).waitForDisplayed()
         await $(this.selectors.currentPageNumber()).scrollIntoView()
         const firstElement = await $$(this.selectors.currentPageNumber())
-        return await expect(firstElement[0]).toHaveText(currentIteraion)
+         await expect(firstElement[0]).toHaveText(currentIteraion)
      }
      protected async getPageInformation(){
         const pageCurrent:Array<string> =['1','2','3']
