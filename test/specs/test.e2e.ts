@@ -21,5 +21,7 @@ describe('Get Mercado libre information', () => {
     })
     it('get Information', async()=>{
         await writeFile('./file.txt', JSON.stringify(Articulos.joinArrs));
+        await writeFile('./file.json',JSON.stringify(Articulos.joinArrs));
+
     })
 })
