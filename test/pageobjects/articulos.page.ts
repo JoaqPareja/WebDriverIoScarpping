@@ -1,6 +1,6 @@
 
 export class Articulos{
-    protected get selectors(){
+    protected get selectors(){//This defines a getter method named selectors that returns an object with several selector functions. These selector functions are used to locate and interact with elements on the web page.
         return{
             h2Articles:()=>('.ui-search-item__title.shops__item-title'),
             priceArticle:()=>('.andes-money-amount__fraction'),
@@ -9,10 +9,13 @@ export class Articulos{
             currentPageNumber:()=>('.andes-pagination__button.andes-pagination__button--current')
         }
     }
-    public h2Articles:Array<string> = [];   
-    public priceArticles:Array<string> = [];   
-    public hrefArticles:Array<string> = [];
-    public joinArrs:Array<string>|any=[]
+    //Public Properties:
+
+    //Here we define several public properties to store data related to this class:
+    public h2Articles:Array<string> = []; //An array to store article titles.
+    public priceArticles:Array<string> = []; //An array to store article prices.
+    public hrefArticles:Array<string> = []; //An array to store article links (URLs).
+    public joinArrs:Array<string>|any = [];; //An array to join and store article information in a structured format.
      protected async iterations(selector:string, arr:Array<string>){
         const iterations =  await $$(selector)
         return  iterations.forEach(async element => {
@@ -21,7 +24,7 @@ export class Articulos{
             };
         });
      }
-     protected async getLink(selector:string, arr:Array<string>){
+     protected async getLink(selector:string, arr:Array<string>){ //This method iterates over elements matching a given selector and adds their href attribute (link) to the specified array.
         const iterations =  await $$(selector)
         return  iterations.forEach(async element => {
             if(element!= null){
@@ -29,17 +32,16 @@ export class Articulos{
             }; 
         });
      }
-     protected async getArticlesInformation():Promise<void>{
+     protected async getArticlesInformation():Promise<void>{ //This method uses the above two methods to extract information (titles, prices, and links) about articles.
          await this.iterations(this.selectors.h2Articles(),this.h2Articles);
          await this.iterations(this.selectors.priceArticle(), this.priceArticles);
          await this.getLink(this.selectors.hrefLink(), this.hrefArticles)
      }
-     protected get uniffyArrs(){
-        let tempArss:Array<string>|any=[];
-        tempArss.push([{Titles: this.h2Articles, Prices:this.priceArticles, Link: this.hrefArticles}])
-        return this.joinArrs = JSON.stringify(tempArss)
+     protected async uniffyArrs(){ //This method combines the article information into a single JSON string.
+        let titles:Array<any>=[this.h2Articles]
+        return this.joinArrs = JSON.stringify(titles.map(titles => new Array({Titles: titles, Prices: this.priceArticles, Link: this.hrefArticles })))
      }
-     protected async clickNextBtn():Promise<void>{
+     protected async clickNextBtn():Promise<void>{ //This method clicks a "Next" button to navigate to the next page of articles.
          await $(this.selectors.nextBtn()).waitForDisplayed(),
          await $(this.selectors.nextBtn()).scrollIntoView()
         const nextBtn = await $(this.selectors.nextBtn())
@@ -58,7 +60,7 @@ export class Articulos{
                 await this.getArticlesInformation();
                 await this.checkCurrentNumber(pageCurrent[index]),
                 await this.clickNextBtn()
-                await this.uniffyArrs;
+                await this.uniffyArrs();
         }
      }
      public async getArticlesInformationFromPages(){
