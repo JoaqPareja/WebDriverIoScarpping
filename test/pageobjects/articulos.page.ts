@@ -29,24 +29,20 @@ export class Articulos{
             }; 
         });
      }
-
      protected async getArticlesInformation():Promise<void>{
          await this.iterations(this.selectors.h2Articles(),this.h2Articles);
          await this.iterations(this.selectors.priceArticle(), this.priceArticles);
          await this.getLink(this.selectors.hrefLink(), this.hrefArticles)
      }
-     protected get uniffyArrs():Promise<string>{
-        return this.joinArrs.push([{Titles: this.h2Articles, Prices:this.priceArticles, Link: this.hrefArticles}])
+     protected get uniffyArrs(){
+        let tempArss:Array<string>|any=[];
+        tempArss.push([{Titles: this.h2Articles, Prices:this.priceArticles, Link: this.hrefArticles}])
+        return this.joinArrs = JSON.stringify(tempArss)
      }
-    //  public async uniffyArrs(){
-    //     return this.uniArrs()
-    //  }
      protected async clickNextBtn():Promise<void>{
-        // browser.pause(10000);
          await $(this.selectors.nextBtn()).waitForDisplayed(),
          await $(this.selectors.nextBtn()).scrollIntoView()
         const nextBtn = await $(this.selectors.nextBtn())
-        // await expect(nextBtn).toHaveText('Siguiente'),
         await $(nextBtn).click()
      }
 
@@ -58,26 +54,16 @@ export class Articulos{
      }
      protected async getPageInformation(){
         const pageCurrent:Array<string> =['1','2','3']
-        // await this.clickNextBtn()
         for (let index = 0; index < pageCurrent.length; index++) {
-            // while(!pageCurrent.at(-1)){
                 await this.getArticlesInformation();
                 await this.checkCurrentNumber(pageCurrent[index]),
                 await this.clickNextBtn()
                 await this.uniffyArrs;
         }
-    
      }
      public async getArticlesInformationFromPages(){
         return await this.getPageInformation();
      }
-    //  protected exprFile(filePath:string,ArrToSend:string){
-    //     fs.writeFileSync(filePath, ArrToSend);
-    //  }
-    //  public exportFile(filePath:string,ArrToSend:string){
-    //     fs.writeFileSync(filePath, '\n'+ArrToSend+'\n');
-    //  }
-   
 }
 
 export default new Articulos();
