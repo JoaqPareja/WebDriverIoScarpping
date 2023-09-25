@@ -39,7 +39,9 @@ export class Articulos{
      }
      protected async uniffyArrs(){ //This method combines the article information into a single JSON string.
         let titles:Array<any>=[this.h2Articles]
-        return this.joinArrs = JSON.stringify(titles.map(titles => new Array({Titles: titles, Prices: this.priceArticles, Link: this.hrefArticles })))
+        return this.joinArrs = JSON.stringify(titles.map(
+            titles => new Array({
+                Titles: titles, Prices: this.priceArticles, Link: this.hrefArticles }))) //The titles array is then processed using the map function. In each iteration of the map, a new array is created, which contains a single object. This object has three properties: Titles, Prices, and Link.
      }
      protected async clickNextBtn():Promise<void>{ //This method clicks a "Next" button to navigate to the next page of articles.
          await $(this.selectors.nextBtn()).waitForDisplayed(),
@@ -48,13 +50,13 @@ export class Articulos{
         await $(nextBtn).click()
      }
 
-     protected async checkCurrentNumber(currentIteraion:string){
+     protected async checkCurrentNumber(currentIteraion:string){//This method checks if the current page number matches the expected page number.
         await $(this.selectors.currentPageNumber()).waitForDisplayed()
         await $(this.selectors.currentPageNumber()).scrollIntoView()
         const firstElement = await $$(this.selectors.currentPageNumber())
          await expect(firstElement[0]).toHaveText(currentIteraion)
      }
-     protected async getPageInformation(){
+     protected async getPageInformation(){ //This method iterates through a set of pages (with page numbers '1', '2', '3'), extracts article information from each page, checks the current page number, and adds the unified article data to the joinArrs property.
         const pageCurrent:Array<string> =['1','2','3']
         for (let index = 0; index < pageCurrent.length; index++) {
                 await this.getArticlesInformation();
@@ -63,7 +65,7 @@ export class Articulos{
                 await this.uniffyArrs();
         }
      }
-     public async getArticlesInformationFromPages(){
+     public async getArticlesInformationFromPages(){ //This is a public method that initiates the process of getting article information from multiple pages. It calls getPageInformation to perform this task.
         return await this.getPageInformation();
      }
 }

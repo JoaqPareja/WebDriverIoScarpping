@@ -16,8 +16,9 @@ describe('Get Mercado libre information', () => { //This defines a test suite wi
         await Articulos.getArticlesInformationFromPages()
         // browser.pause(10000); this can pause the browser in case we want to pause the execution of the code
     })
-    it('get Information', async()=>{
-        await writeFile('./file.txt', Articulos.joinArrs);
+    it('create file Information', async()=>{
+        //Export the desired array into the specific file
+        await writeFile('./file.txt', Articulos.joinArrs); 
         await writeFile('./file.json',Articulos.joinArrs);
 
     })
